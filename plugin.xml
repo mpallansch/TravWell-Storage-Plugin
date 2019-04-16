@@ -1,0 +1,48 @@
+﻿<plugin
+  xmlns="http://www.phonegap.com/ns/plugins/1.0"
+  id="old-storage-plugin"
+  version="1.0">
+
+  <name>Storage</name>
+  <author>Matthew Pallansch</author>
+  <license>MIT</license>
+  <keywords></keywords>
+
+  <description>
+    A plugin for fetching natively stored data in previous versions of the TravWell application
+  </description>
+
+  <engines>
+    <engine name="cordova" version=">=3.0.0" />
+  </engines>
+    
+    <platform name="android">
+        <source-file src="src/android/Storage.java" target-dir="src/org/apache/cordova" />
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Storage">
+                <param name="android-package" value="org.apache.cordova" />
+            </feature>
+        </config-file>
+    </platform>
+    
+    <platform name="ios">
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="Storage">
+                <param name="ios-package" value="Storage" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/Storage.h" />
+        <source-file src="src/ios/Storage.m" />
+
+    </platform>
+
+  <js-module src="www/storage.js" name="Storage">
+    <runs />
+  </js-module>
+
+  <platform name="ios"></platform>
+  <platform name="android"></platform>
+</plugin>

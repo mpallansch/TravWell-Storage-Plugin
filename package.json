@@ -1,0 +1,23 @@
+﻿{
+  "name": "old-storage-plugin",
+  "version": "1.0.0",
+  "description": "A plugin for fetching natively stored data in previous versions of the TravWell application",
+  "cordova": {
+    "id": "old-storage-plugin",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    ""
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Matthew Pallansch",
+  "license": "MIT"
+}
