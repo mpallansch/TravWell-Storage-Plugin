@@ -1,4 +1,4 @@
-﻿package org.apache.cordova;
+package org.apache.cordova;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -19,14 +19,12 @@ import org.json.JSONArray;
 import java.util.Arrays;
 
 public class Storage extends CordovaPlugin {
-    
-   @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("getPreviousStorage")) {
+
+    @Override public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        if (action.equals("getPreviousStorage")) { 
             String message = args.getString(0);
             callbackContext.success("Hello Plugin! Here's your message champ: " + message);
             return true;
-        }
-        return false;
-    }
+        } return false;
+    } 
 }
