@@ -1,17 +1,16 @@
-﻿{
+{
   "name": "old-storage-plugin",
   "version": "1.0.0",
   "description": "A plugin for fetching natively stored data in previous versions of the TravWell application",
   "cordova": {
     "id": "old-storage-plugin",
-    "platforms": [
-      "android",
-      "ios"
-    ]
+    "platforms": [ "android", "ios" ]
   },
-  "keywords": [
-    ""
-  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mpallansch/TravWell-Storage-Plugin.git"
+  },
+  "keywords": [ "" ],
   "engines": [
     {
       "name": "cordova",

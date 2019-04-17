@@ -17,7 +17,7 @@
   </engines>
     
     <platform name="android">
-        <source-file src="src/android/Storage.java" target-dir="src/org/apache/cordova" />
+        <source-file src="src/android/Storage.java" target-dir="src/org/apache/cordova/storage" />
 
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Storage">
