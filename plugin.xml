@@ -40,7 +40,7 @@
     </platform>
 
   <js-module src="www/storage.js" name="Storage">
-    <runs />
+    <clobbers target="OldStorage" />
   </js-module>
 
   <platform name="ios"></platform>
