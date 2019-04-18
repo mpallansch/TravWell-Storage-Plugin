@@ -21,7 +21,7 @@
 
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Storage">
-                <param name="android-package" value="org.apache.cordova" />
+                <param name="android-package" value="org.apache.cordova.storage.Storage" />
             </feature>
         </config-file>
     </platform>

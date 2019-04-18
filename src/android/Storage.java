@@ -1,4 +1,4 @@
-package org.apache.cordova;
+package org.apache.cordova.storage;
 
 import android.app.Activity;
 import android.graphics.Color;
