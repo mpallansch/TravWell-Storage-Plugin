@@ -18,26 +18,22 @@ import org.json.JSONException;
 import org.json.JSONArray;
 import java.util.Arrays;
 
+import com.activeandroid.ActiveAndroid;
+
 public class Storage extends CordovaPlugin {
 
     @Override public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        Log.d("Foobar", "execute");
         try {
-            Log.d("Foobar", "try");
+            ActiveAndroid.beginTransaction();
             if (action.equals("getPreviousStorage")) { 
-                Log.d("Foobar", "action equals getPreviousStorage");
                 String message = args.getString(0);
-                Log.d("Foobar", "message = " + message);
                 callbackContext.success("Hello Plugin! Here's your message champ: " + message);
-                Log.d("Foobar", "after callback");
                 return true;
             } else { 
-                Log.d("Foobar", "else");
                 callbackContext.error("Action not recognized");
                 return false; 
             }
         } catch(Exception e) {
-            Log.d("Foobar", "catch");
             callbackContext.error("Exception thrown");
             return false;
         }

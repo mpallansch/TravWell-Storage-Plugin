@@ -17,8 +17,10 @@
   </engines>
     
     <platform name="android">
+        <source-file src="libs/activeandroid-3.0.jar" target-dir="libs/" />
         <source-file src="src/android/Storage.java" target-dir="src/org/apache/cordova/storage" />
-
+        
+        
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Storage">
                 <param name="android-package" value="org.apache.cordova.storage.Storage" />
