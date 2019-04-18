@@ -24,17 +24,21 @@ public class Storage extends CordovaPlugin {
 
     @Override public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         try {
-            ActiveAndroid.beginTransaction();
             if (action.equals("getPreviousStorage")) { 
+                ActiveAndroid.initialize(this.cordova.getActivity().getApplicationContext());
+                
                 String message = args.getString(0);
-                callbackContext.success("Hello Plugin! Here's your message champ: " + message);
+                callbackContext.success(message);
+                
+                ActiveAndroid.dispose();
                 return true;
             } else { 
                 callbackContext.error("Action not recognized");
                 return false; 
             }
         } catch(Exception e) {
-            callbackContext.error("Exception thrown");
+            e.printStackTrace();
+            callbackContext.error("Exception thrown " + e.getMessage());
             return false;
         }
     } 
