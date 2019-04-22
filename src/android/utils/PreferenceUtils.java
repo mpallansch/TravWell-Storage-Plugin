@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import gov.cdc.oid.ncezid.travwell.TravelHealthApplication;
 import gov.cdc.oid.ncezid.travwell.model.Profile;
-import com.duethealth.lib.component.utils.DhUtils;
 
 /**
  * Created by parker on 12/12/13.
@@ -15,7 +13,7 @@ import com.duethealth.lib.component.utils.DhUtils;
 public class PreferenceUtils {
 
     public static SharedPreferences prefs;
-    public static final String NAME = TravelHealthApplication.SHARED_PREF_NAME;
+    public static final String NAME = "TravelHealth";
     public static boolean useDefault;
 
     public static final String TIME_LAST_UPDATED_DESTINATIONS = "TimeLastUpdatedDestinations";
@@ -155,12 +153,13 @@ public class PreferenceUtils {
      */
     @SuppressLint("NewApi")
     public static boolean commit(SharedPreferences.Editor editor) {
-        if (DhUtils.isGingerBreadOrGreater()) {
+        /*if (DhUtils.isGingerBreadOrGreater()) {
             editor.apply();
             return true;
         } else {
             return editor.commit();
-        }
+        }*/
+        return false;
     }
 
 

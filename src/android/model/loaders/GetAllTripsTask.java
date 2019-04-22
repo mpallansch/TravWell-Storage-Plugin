@@ -35,7 +35,7 @@ public class GetAllTripsTask extends AsyncTaskLoader<List<Trip>> {
                 }
             }
             if (currentTrips.size() > 0) {
-                Trip header = new Trip("Completed Trips"), 0, 0, null, null);
+                Trip header = new Trip("Completed Trips", 0, 0, null, null);
                 currentTrips.add(0, header);
             }
             if (completedTrips.size() > 0) {
