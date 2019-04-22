@@ -45,7 +45,7 @@
         
         <source-file src="src/android/utils/PreferenceUtils.java" target-dir="src/gov/cdc/oid/ncezid/travwell/utils" />
         
-        <source-file src="src/android/model/Storage.java" target-dir="src/gov/cdc/oid/ncezid/travwell" />
+        <source-file src="src/android/Storage.java" target-dir="src/gov/cdc/oid/ncezid/travwell" />
         
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Storage">
