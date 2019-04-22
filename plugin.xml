@@ -52,6 +52,18 @@
                 <param name="android-package" value="gov.cdc.oid.ncezid.travwell.Storage" />
             </feature>
         </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <meta-data
+                android:name="AA_DB_NAME"
+                android:value="TravelHealth.db"/>
+            <meta-data
+                android:name="AA_DB_VERSION"
+                android:value="2"/>
+            <meta-data
+                android:name="AA_MODELS"
+                android:value=".model.Alarm, .model.Destination, .model.Disease, .model.Document, .model.Drug, .model.PackingGroup, .model.PackingItem, .model.PackingItem,.model.PackingSuperGroup, .model.Profile, .model.Trip"/>
+        </config-file>
     </platform>
     
     <platform name="ios">
@@ -70,7 +82,4 @@
   <js-module src="www/storage.js" name="Storage">
     <clobbers target="OldStorage" />
   </js-module>
-
-  <platform name="ios"></platform>
-  <platform name="android"></platform>
 </plugin>
