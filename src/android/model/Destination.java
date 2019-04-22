@@ -58,45 +58,45 @@ public class Destination extends Model implements Parcelable {
     public static final String TABLE = "Destination";
 
     @Column(name = Keys.LETTER)
-    private String letter;
+    public String letter;
 
     @Column(name = Keys.NAME_FRIENDLY)
-    private String nameFriendly;
+    public String nameFriendly;
 
     @Column(name = Keys.NAME_LIST)
-    private String nameList;
+    public String nameList;
 
     @Column(name = Keys.NAME_YELLOW_FEVER)
-    private String nameYellowFeverMalariaTable;
+    public String nameYellowFeverMalariaTable;
 
     @Column(name = Keys.NAME_OFFICIAL)
-    private String nameOfficial;
+    public String nameOfficial;
 
     @Column(name = Keys.NAME_PLUGIN)
-    private String namePlugin;
+    public String namePlugin;
 
     @Column(name = Keys.WEB_LINK)
-    private String webLink;
+    public String webLink;
 
     @Column(name = Keys.ISOA2)
-    private String isoA2;
+    public String isoA2;
 
     @Column(name = Keys.IS_ALIAS)
-    private boolean isAlias;
+    public boolean isAlias;
 
     @Column(name = Keys.PARENT_NAME)
-    private String parentName;
+    public String parentName;
 
     @Column(name = Keys.FLAG_URL)
-    private String flagUrlSmall;
+    public String flagUrlSmall;
 
     @Column(name = Keys.EMERGENCY_NUMBERS)
-    private String emergencyNumbers;
+    public String emergencyNumbers;
 
     @Column(name = Trip.TABLE)
-    private Trip trip;
+    public Trip trip;
 
-    private List<Disease> diseases;
+    public List<Disease> diseases;
 
     public static final class Keys {
         public static final String LETTER = "Letter";
@@ -238,7 +238,7 @@ public class Destination extends Model implements Parcelable {
         dest.writeString(this.parentName);
     }
 
-    private Destination(Parcel in) {
+    public Destination(Parcel in) {
         this.nameFriendly = in.readString();
         this.nameList = in.readString();
         this.isAlias = in.readByte() != 0;

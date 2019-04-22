@@ -117,46 +117,46 @@ public class Alarm extends Model {
     }
 
     @Column(name = Drug.TABLE)
-    private Drug drug;
+    public Drug drug;
 
     @Column(name = Trip.TABLE)
-    private Trip trip;
+    public Trip trip;
 
     @Column(name = Disease.TABLE)
-    private Disease disease;
+    public Disease disease;
 
     @Column(name = Keys.DAY)
-    private int day;
+    public int day;
 
     @Column(name = Keys.HOUR)
-    private int hour;
+    public int hour;
 
     @Column(name = Keys.MINUTE)
-    private int minute;
+    public int minute;
 
     @Column(name = Keys.IS_ACTIVE)
-    private boolean isActive;
+    public boolean isActive;
 
     @Column(name = Keys.TIME)
-    private long time;
+    public long time;
 
     @Column(name = Keys.TITLE)
-    private String title;
+    public String title;
 
     @Column(name = Keys.TYPE)
-    private String type;
+    public String type;
 
     @Column(name = Keys.INTERVAL)
-    private long interval;
+    public long interval;
 
     @Column(name = Keys.REPEATING)
-    private boolean repeating;
+    public boolean repeating;
 
     @Column(name = PackingItem.TABLE)
-    private PackingItem packingItem;
+    public PackingItem packingItem;
 
     @Column(name = Profile.TABLE)
-    private Profile profile;
+    public Profile profile;
 
     public static final class Keys {
         public static final String DAY = "Day";

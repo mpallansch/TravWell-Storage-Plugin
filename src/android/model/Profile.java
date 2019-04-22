@@ -38,25 +38,25 @@ public class Profile extends Model {
     }
 
     @Column(name = Keys.FIRST_NAME)
-    private String firstName;
+    public String firstName;
     @Column(name = Keys.LAST_NAME)
-    private String lastName;
+    public String lastName;
     @Column(name = Keys.LAST_UPDATED_DESTINATIONS)
-    private long lastUpdatedDestinations;
+    public long lastUpdatedDestinations;
     @Column(name = Keys.LAST_UPDATED_DISEASE)
-    private long lastUpdatedDisease;
+    public long lastUpdatedDisease;
     @Column(name = Keys.HOME_SCREEN)
-    private int homeScreen;
+    public int homeScreen;
     @Column(name = Keys.REMINDERS_TO_DO)
-    private boolean remindersToDo;
+    public boolean remindersToDo;
     @Column(name = Keys.REMINDERS_VACCINE)
-    private boolean remindersVaccine;
+    public boolean remindersVaccine;
     @Column(name = Keys.REMINDERS_MEDICINE)
-    private boolean remindersMedicine;
+    public boolean remindersMedicine;
 
-    private List<Drug> vaccineDrugs;
-    private List<Disease> malarialMedicineDiseases;
-    private List<PackingItem> profileMedicines;
+    public List<Drug> vaccineDrugs;
+    public List<Disease> malarialMedicineDiseases;
+    public List<PackingItem> profileMedicines;
 
     public static class Keys {
         public static final String FIRST_NAME = "FirstName";

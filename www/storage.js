@@ -1,7 +1,14 @@
 ﻿var exec = require('cordova/exec');
 
 exports.getPreviousStorage = function(str, callback) {
-    exec(callback, function(err) {
+    exec(function(response){
+        try {
+            response = JSON.parse(response);
+            callback(response);
+        } catch (e) {
+            callback('Error fetching old data. Unable to parse JSON.')
+        }
+    }, function(err) {
         callback('Error fetching old data. ' + err);
     }, "Storage", "getPreviousStorage", [str]);
 }

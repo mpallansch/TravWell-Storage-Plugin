@@ -39,24 +39,24 @@ public class PackingGroup extends Model {
     }
 
     @Column(name = Keys.GROUP_ID)
-    private int groupId;
+    public int groupId;
 
     @Column(name = Keys.SORT_ORDER)
-    private int sortOrder;
+    public int sortOrder;
 
     @Column(name = Keys.GROUP_TEXT)
-    private String groupText;
+    public String groupText;
 
     @Column(name = PackingSuperGroup.TABLE)
-    private PackingSuperGroup packingSuperGroup;
+    public PackingSuperGroup packingSuperGroup;
 
     @Column(name = Trip.TABLE)
-    private Trip trip;
+    public Trip trip;
 
     @Column(name = Keys.IS_TODO)
-    boolean isTodo;
+    public boolean isTodo;
 
-    private List<PackingItem> packingItems;
+    public List<PackingItem> packingItems;
 
     public static final class Keys {
         public static final String GROUP_ID = "GroupId";

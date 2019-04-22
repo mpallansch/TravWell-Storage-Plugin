@@ -52,41 +52,41 @@ public class Trip extends Model {
     }
 
     @Column(name = Keys.NAME)
-    private String name;
+    public String name;
 
     @Column(name = Keys.END_TIME)
-    private long endTime;
+    public long endTime;
 
     @Column(name = Keys.START_TIME)
-    private long startTime;
+    public long startTime;
 
     @Column(name = Keys.FLAG)
-    private String flag;
+    public String flag;
 
     @Column(name = Profile.TABLE)
-    private Profile profile;
+    public Profile profile;
 
     /**
      * Comma separated list of Longs (Db ids)
      */
     @Column(name = Keys.CHECKED_PACKING_LIST_MEDICINES)
-    private String checkedPackingListItems;
-    private HashSet<Long> checkedPackingListMedicines;
+    public String checkedPackingListItems;
+    public HashSet<Long> checkedPackingListMedicines;
 
     /**
      * Comma separated list of Longs (Db ids)
      */
     @Column(name = Keys.CHECKED_TO_DO_MEDICINES)
-    private String checkedToDoMedicinesItems;
-    private HashSet<Long> checkedToDoMedicines;
+    public String checkedToDoMedicinesItems;
+    public HashSet<Long> checkedToDoMedicines;
 
     @Column(name = Keys.DELETED_PACKING_LIST_MEDICINES)
-    private String deletedPackingListItems;
-    private HashSet<Long> deletedPackingListMedicines;
+    public String deletedPackingListItems;
+    public HashSet<Long> deletedPackingListMedicines;
 
     @Column(name = Keys.DELETED_TO_DO_MEDICINES)
-    private String deletedToDoMedicinesItems;
-    private HashSet<Long> deletedToDoMedicines;
+    public String deletedToDoMedicinesItems;
+    public HashSet<Long> deletedToDoMedicines;
 
     public static final class Keys {
         public static final String NAME = "Name";
@@ -169,7 +169,7 @@ public class Trip extends Model {
         this.deletedPackingListItems = getCommaSeparatedValueFromSet(deletedPackingListMedicines);
     }
 
-    private String getCommaSeparatedValueFromSet(HashSet<Long> set) {
+    public String getCommaSeparatedValueFromSet(HashSet<Long> set) {
         if (set != null) {
             String csv = set.toString().replace("[", "").replace("]", "").replace(", ", ",");
             return csv;
@@ -177,7 +177,7 @@ public class Trip extends Model {
         return "";
     }
 
-    private HashSet<Long> getSetFromString(String commaSeparatedList) {
+    public HashSet<Long> getSetFromString(String commaSeparatedList) {
         HashSet<Long> set = null;
         if (!TextUtils.isEmpty(commaSeparatedList)) {
             List<String> items = Arrays.asList(commaSeparatedList.split("\\s*,\\s*"));
@@ -196,15 +196,15 @@ public class Trip extends Model {
         return set;
     }
 
-    private List<Destination> destinations;
-    private List<PackingSuperGroup> packingSuperGroups;
-    private List<PackingItem> allPackingItems;
-    private List<PackingItem> todoItems;
-    private List<PackingItem> packingItems;
-    private List<PackingGroup> packingGroups;
-    private List<Drug> drugs;
-    private List<Disease> diseases;
-    private List<Alarm> alarms;
+    public List<Destination> destinations;
+    public List<PackingSuperGroup> packingSuperGroups;
+    public List<PackingItem> allPackingItems;
+    public List<PackingItem> todoItems;
+    public List<PackingItem> packingItems;
+    public List<PackingGroup> packingGroups;
+    public List<Drug> drugs;
+    public List<Disease> diseases;
+    public List<Alarm> alarms;
 
     public List<Destination> getDestinations() {
         if (destinations == null) {
@@ -355,10 +355,10 @@ public class Trip extends Model {
         new CheckTaskProfileMedicineTask(checkedMedicineIds, isTodo).execute();
     }
 
-    private class CheckTaskProfileMedicineTask extends AsyncTask<Void, Void, Void> {
+    public class CheckTaskProfileMedicineTask extends AsyncTask<Void, Void, Void> {
 
-        private HashSet<Long> checkedMedicineIds;
-        private boolean isToDo;
+        public HashSet<Long> checkedMedicineIds;
+        public boolean isToDo;
 
         public CheckTaskProfileMedicineTask(HashSet<Long> checkedMedicineIds, boolean isToDo) {
             this.checkedMedicineIds = checkedMedicineIds;
@@ -381,9 +381,9 @@ public class Trip extends Model {
     }
 
     public static class DeepDeleteTaskTrip extends AsyncTask<Void, Void, Void> {
-        private Trip trip;
-        private Context context;
-        private List<Trip> trips;
+        public Trip trip;
+        public Context context;
+        public List<Trip> trips;
 
         public DeepDeleteTaskTrip(Context context, Trip trip) {
             this.trip = trip;

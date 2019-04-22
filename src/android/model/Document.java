@@ -33,28 +33,28 @@ public class Document extends Model {
     }
 
     @Column(name = Trip.TABLE)
-    private Trip trip;
+    public Trip trip;
 
     @Column(name = Keys.NAME)
-    private String name;
+    public String name;
 
     @Column(name = Keys.CATEGORY)
-    private String category;
+    public String category;
 
     @Column(name = Keys.LOCAL_IMAGE_PATH)
-    private String localImagePath;
+    public String localImagePath;
 
     @Column(name = Keys.REMOTE_IMAGE_PATH)
-    private String remoteImagePath;
+    public String remoteImagePath;
 
     @Column(name = Profile.TABLE)
-    private Profile profile;
+    public Profile profile;
 
     @Column(name = Keys.LOCAL_THUMB_PATH)
-    private String localThumbPath;
+    public String localThumbPath;
 
     @Column(name = Keys.REMOTE_THUMB_PATH)
-    private String remoteThumbPath;
+    public String remoteThumbPath;
 
     public static final class Keys {
         public static final String NAME = "Name";
@@ -129,7 +129,7 @@ public class Document extends Model {
      *
      * @param filePath
      */
-    private void deleteFile(String filePath) {
+    public void deleteFile(String filePath) {
         if (!TextUtils.isEmpty(filePath)) {
             File file = new File(filePath);
             if (file != null) {
@@ -168,9 +168,9 @@ public class Document extends Model {
     }
 
     public static class DocumentDeepDeleteTask extends AsyncTask<Void, Void, Void> {
-        private Document document;
-        private HashSet<Document> documentsSet;
-        private List<Document> documents;
+        public Document document;
+        public HashSet<Document> documentsSet;
+        public List<Document> documents;
 
         public DocumentDeepDeleteTask(Document document) {
             this.document = document;

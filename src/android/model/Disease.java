@@ -76,41 +76,41 @@ public class Disease extends Model {
     }
 
     @Column(name = Keys.DISEASE_LIST_NAME)
-    private String diseaseListName;
+    public String diseaseListName;
 
     @Column(name = Keys.FRIENDLY_NAME)
-    private String friendlyName;
+    public String friendlyName;
 
     @Column(name = Keys.GROUP_TEXT)
-    private String groupText;
+    public String groupText;
 
     @Column(name = Keys.FIND_OUT_WHY)
-    private String findOutWhyHtml;
+    public String findOutWhyHtml;
 
     @Column(name = Keys.DISEASE_PAGE_URL)
-    private String diseasePageUrl;
+    public String diseasePageUrl;
 
     @Column(name = Trip.TABLE)
-    private Trip trip;
+    public Trip trip;
 
     @Column(name = Keys.DRUG_SELECTED)
-    private Drug selectedDrug;
+    public Drug selectedDrug;
 
     @Column(name = Keys.IS_ALARM_ON)
-    private boolean isAlarmOn;
+    public boolean isAlarmOn;
 
     @Column(name = Keys.DRUG_TYPE)
-    private String drugType;
+    public String drugType;
 
     @Column(name = Profile.TABLE)
-    private Profile profile;
+    public Profile profile;
 
     @Column(name = Destination.TABLE)
-    private Destination destination;
+    public Destination destination;
 
-    private List<Alarm> alarms;
+    public List<Alarm> alarms;
 
-    private List<Drug> drugs;
+    public List<Drug> drugs;
 
     public static final class Keys {
         public static final String DISEASE_LIST_NAME = "DiseaseListName";

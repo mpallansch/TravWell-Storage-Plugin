@@ -58,54 +58,54 @@ public class Drug extends Model {
     }
 
     @Column(name = Keys.DISPLAY_NAME)
-    private String displayName;
+    public String displayName;
 
     @Column(name = Keys.FRIENDLY_NAME)
-    private String friendlyName;
+    public String friendlyName;
 
     @Column(name = Keys.DURATION)
-    private String duration;
+    public String duration;
 
     @Column(name = Keys.ALERT_TEXT)
-    private String alertText;
+    public String alertText;
 
     @Column(name = Keys.REMINDER_INSTRUCTIONS)
-    private String reminderInstructions;
+    public String reminderInstructions;
 
     @Column(name = Keys.TS_UPDATED)
-    private String tsUpdated;
+    public String tsUpdated;
 
     @Column(name = Keys.TIME_STARTED)
-    private Long timeStarted;
+    public Long timeStarted;
 
     @Column(name = Disease.TABLE)
-    private Disease disease;
+    public Disease disease;
 
     @Column(name = Trip.TABLE)
-    private Trip trip;
+    public Trip trip;
 
     @Column(name = Keys.COMPLETED)
-    private boolean isCompleted;
+    public boolean isCompleted;
 
     @Column(name = Keys.NOTES)
-    private String notes;
+    public String notes;
 
     @Column(name = Profile.TABLE)
-    private Profile profile;
+    public Profile profile;
 
     @Column(name = Keys.DISEASE_NAME_FRIENDLY)
-    private String diseaseFriendlyName;
+    public String diseaseFriendlyName;
 
     @Column(name = Keys.DISEASE_NAME_LIST)
-    private String diseaseNameList;
+    public String diseaseNameList;
 
     @Column(name = Keys.DRUG_TYPE)
-    private String drugType;
+    public String drugType;
 
     @Column(name = Keys.IS_ALARM_ON)
-    private boolean isAlarmOn;
+    public boolean isAlarmOn;
 
-    private List<Alarm> alarms;
+    public List<Alarm> alarms;
 
     public static final class Keys {
         public static final String DISPLAY_NAME = "DisplayName";

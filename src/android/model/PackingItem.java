@@ -61,48 +61,48 @@ public class PackingItem extends Model {
     }
 
     @Column(name = Keys.ITEM_ID)
-    private int itemId;
+    public int itemId;
 
     @Column(name = Keys.DISPLAY_NAME)
-    private String displayName;
+    public String displayName;
 
     @Column(name = Keys.DESCRIPTION_CONTENT)
-    private String descriptionContent;
+    public String descriptionContent;
 
     @Column(name = Keys.APP_SPECIFIC_CONTENT)
-    private String appSpecificContent;
+    public String appSpecificContent;
 
     @Column(name = Keys.SORT_ORDER)
-    private int sortOrder;
+    public int sortOrder;
 
     @Column(name = Keys.NOTES)
-    private String notes;
+    public String notes;
 
     @Column(name = PackingGroup.TABLE)
-    private PackingGroup packingGroup;
+    public PackingGroup packingGroup;
 
     @Column(name = Trip.TABLE)
-    private Trip trip;
+    public Trip trip;
 
     @Column(name = Keys.IS_COMPLETED)
-    private boolean isCompleted;
+    public boolean isCompleted;
 
     @Column(name = PackingSuperGroup.TABLE)
-    private PackingSuperGroup packingSuperGroup;
+    public PackingSuperGroup packingSuperGroup;
 
     @Column(name = Keys.IS_TODO)
-    private boolean isTodo;
+    public boolean isTodo;
 
     @Column(name = Keys.IS_ALARM_ON)
-    private boolean isAlarmOn;
+    public boolean isAlarmOn;
 
     @Column(name = Keys.PACKING_SUPPER_GROUP_ORDER)
-    int packingSupperGroupOrder;
+    public int packingSupperGroupOrder;
 
     @Column(name = Profile.TABLE)
-    private Profile profile;
+    public Profile profile;
 
-    private List<Alarm> alarms;
+    public List<Alarm> alarms;
 
     public static final class Keys {
         public static final String IS_COMPLETED = "IsCompleted";
@@ -248,10 +248,10 @@ public class PackingItem extends Model {
     }
 
     public static class SavePackingItem extends AsyncTask<Void, Void, Void> {
-        private PackingItem packingItem;
-        private List<Alarm> newAlarms;
-        private Context context;
-        private int type;
+        public PackingItem packingItem;
+        public List<Alarm> newAlarms;
+        public Context context;
+        public int type;
 
         public SavePackingItem(PackingItem packingItem, List<Alarm> newAlarms, Context context, int type) {
             this.packingItem = packingItem;
@@ -308,13 +308,13 @@ public class PackingItem extends Model {
     }
 
     public static class DeletePackingItems extends AsyncTask<Void, Void, Void> {
-        private List<PackingItem> packingItems;
-        private HashSet<PackingItem> packingItemsSet;
-        private PackingItem packingItem;
-        private Context context;
-        private Trip trip;
-        private long tripId;
-        private HashSet<Long> deletedMedicineIds;
+        public List<PackingItem> packingItems;
+        public HashSet<PackingItem> packingItemsSet;
+        public PackingItem packingItem;
+        public Context context;
+        public Trip trip;
+        public long tripId;
+        public HashSet<Long> deletedMedicineIds;
         boolean isTodo;
 
 
@@ -365,7 +365,7 @@ public class PackingItem extends Model {
             return null;
         }
 
-        private void deletePackingItem(PackingItem packingItem, Context context) {
+        public void deletePackingItem(PackingItem packingItem, Context context) {
             // check the trip id, if not valid we are in the profile and we are going to globally
             // delete the medicine item instead of fake deleting it
             if (packingItem.getItemId() == PackingItem.PROFILE_MEDICINE && tripId > 0) {

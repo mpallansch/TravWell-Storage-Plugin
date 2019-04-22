@@ -43,23 +43,23 @@ public class PackingSuperGroup extends Model {
     }
 
     @Column(name = Keys.SUPER_GROUP_ID)
-    private int superGroupId;
+    public int superGroupId;
 
     @Column(name = Keys.SORT_ORDER)
-    private int sortOrder;
+    public int sortOrder;
 
     @Column(name = Keys.SUPER_GROUP_TEXT)
-    private String superGroupText;
+    public String superGroupText;
 
     @Column(name = Trip.TABLE)
-    private Trip trip;
+    public Trip trip;
 
     @Column(name = Keys.IS_TODO)
-    boolean isTodo;
+    public boolean isTodo;
 
-    private List<PackingGroup> packingGroups;
+    public List<PackingGroup> packingGroups;
 
-    private List<PackingItem> packingItems;
+    public List<PackingItem> packingItems;
 
 
     public static final class Keys {
