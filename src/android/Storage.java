@@ -1,4 +1,4 @@
-package org.apache.cordova.storage;
+package gov.cdc.oid.ncezid.travwell.model;
 
 import android.app.Activity;
 import android.graphics.Color;
