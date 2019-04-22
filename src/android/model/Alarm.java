@@ -8,8 +8,6 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
 
-import gov.cdc.oid.ncezid.travwell.utils.DhAlarmManagerHelper;
-
 /**
  * Created by parker on 11/22/13.
  */
@@ -312,13 +310,13 @@ public class Alarm extends Model {
      * Depending on if the alarm is active or not set it up
      */
     public void activateDeactivateAlarm(Context context) {
-        DhAlarmManagerHelper alarmManagerHelper = new DhAlarmManagerHelper(context);
+        /*DhAlarmManagerHelper alarmManagerHelper = new DhAlarmManagerHelper(context);
         if (isActive()) {
             alarmManagerHelper.cancelRepeatingAlarm(this);
             alarmManagerHelper.setRepeatingAlarm(this);
         } else {
             alarmManagerHelper.cancelRepeatingAlarm(this);
-        }
+        }*/
     }
 
     public Profile getProfile() {

@@ -26,10 +26,8 @@ public class GetAllDocumentTask extends AsyncTaskLoader<ArrayList<List<Document>
     @Override
     public ArrayList<List<Document>> loadInBackground() {
         long profileId = PreferenceUtils.getProfile(getContext());
-        List<Document> all = DatabaseQueries.getDocumentsCategory(getContext().getString(R.string
-                .doc_category_all), profileId);
-        List<Document> trip = DatabaseQueries.getDocumentsByTripCategory(tripId, getContext().getString(R.string
-                .doc_category_current), profileId);
+        List<Document> all = DatabaseQueries.getDocumentsCategory("All Documents", profileId);
+        List<Document> trip = DatabaseQueries.getDocumentsByTripCategory(tripId, "Current Trip", profileId);
         ArrayList<List<Document>> combinedDocuments = new ArrayList<List<Document>>();
         combinedDocuments.add(trip);
         combinedDocuments.add(all);

@@ -8,7 +8,6 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
-import gov.cdc.oid.ncezid.travwell.ui.trip.FragmentTripList;
 
 import java.util.HashSet;
 import java.util.List;
@@ -265,7 +264,7 @@ public class PackingItem extends Model {
         protected Void doInBackground(Void... params) {
             ActiveAndroid.beginTransaction();
             try {
-                if (type == FragmentTripList.PROFILE_MEDICINES) {
+                if (type == PackingItem.PROFILE_MEDICINE) {
                     packingItem.setItemId(PackingItem.PROFILE_MEDICINE);
                     Profile profile = DatabaseQueries.getProfile(context);
                     if (profile != null) {

@@ -301,7 +301,7 @@ public class Trip extends Model {
             }
 
             // Only want the documents for that trip
-            List<Document> documents = DatabaseQueries.getDocumentsByTripCategory(trip.getId(), context.getString(R.string.doc_category_current), PreferenceUtils.getProfile(context));
+            List<Document> documents = DatabaseQueries.getDocumentsByTripCategory(trip.getId(), "Current Trip", PreferenceUtils.getProfile(context));
             for (Document document : documents) {
                 // delete the files too
                 document.deepDelete();

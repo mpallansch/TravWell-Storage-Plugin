@@ -1,4 +1,4 @@
-package gov.cdc.oid.ncezid.travwell.model;
+package gov.cdc.oid.ncezid.travwell;
 
 import android.app.Activity;
 import android.graphics.Color;

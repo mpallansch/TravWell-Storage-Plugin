@@ -18,32 +18,38 @@
     
     <platform name="android">
         <source-file src="libs/activeandroid-3.0.jar" target-dir="libs/" />
-        <source-file src="src/android/Alarm.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
-        <source-file src="src/android/DatabaseQueries.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
-        <source-file src="src/android/Destination.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
-        <source-file src="src/android/Disease.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
-        <source-file src="src/android/Document.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
-        <source-file src="src/android/Drug.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
-        <source-file src="src/android/PackingItem.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
-        <source-file src="src/android/PackingSuperGroup.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
-        <source-file src="src/android/Profile.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
-        <source-file src="src/android/Storage.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
-        <source-file src="src/android/Trip.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
-        <source-file src="src/android/loaders/GetAllDiseasesTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
-        <source-file src="src/android/loaders/GetAllDocumentTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
-        <source-file src="src/android/loaders/GetAllTripsTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
-        <source-file src="src/android/loaders/GetDestinationsTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
-        <source-file src="src/android/loaders/GetDestinationTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
-        <source-file src="src/android/loaders/GetDiseaseTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
-        <source-file src="src/android/loaders/GetDocumentTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
-        <source-file src="src/android/loaders/GetPackingItemsTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
-        <source-file src="src/android/loaders/GetProfileDiseaseVaccineTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
-        <source-file src="src/android/loaders/GetProfileMedicinesTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
-        <source-file src="src/android/loaders/GetProfileVaccinesTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
+        
+        <source-file src="src/android/model/Alarm.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
+        <source-file src="src/android/model/DatabaseQueries.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
+        <source-file src="src/android/model/Destination.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
+        <source-file src="src/android/model/Disease.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
+        <source-file src="src/android/model/Document.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
+        <source-file src="src/android/model/Drug.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
+        <source-file src="src/android/model/PackingItem.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
+        <source-file src="src/android/model/PackingGroup.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
+        <source-file src="src/android/model/PackingSuperGroup.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
+        <source-file src="src/android/model/Profile.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
+        <source-file src="src/android/model/Trip.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model" />
+        
+        <source-file src="src/android/model/loaders/GetAllDiseasesTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
+        <source-file src="src/android/model/loaders/GetAllDocumentTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
+        <source-file src="src/android/model/loaders/GetAllTripsTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
+        <source-file src="src/android/model/loaders/GetDestinationsTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
+        <source-file src="src/android/model/loaders/GetDestinationTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
+        <source-file src="src/android/model/loaders/GetDiseaseTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
+        <source-file src="src/android/model/loaders/GetDocumentTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
+        <source-file src="src/android/model/loaders/GetPackingItemsTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
+        <source-file src="src/android/model/loaders/GetProfileDiseaseVaccineTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
+        <source-file src="src/android/model/loaders/GetProfileMedicinesTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
+        <source-file src="src/android/model/loaders/GetProfileVaccinesTask.java" target-dir="src/gov/cdc/oid/ncezid/travwell/model/loaders" />
+        
+        <source-file src="src/android/utils/PreferenceUtils.java" target-dir="src/gov/cdc/oid/ncezid/travwell/utils" />
+        
+        <source-file src="src/android/model/Storage.java" target-dir="src/gov/cdc/oid/ncezid/travwell" />
         
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Storage">
-                <param name="android-package" value="gov.cdc.oid.ncezid.travwell.model.Storage" />
+                <param name="android-package" value="gov.cdc.oid.ncezid.travwell.Storage" />
             </feature>
         </config-file>
     </platform>

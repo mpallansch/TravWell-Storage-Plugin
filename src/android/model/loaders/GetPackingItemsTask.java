@@ -16,7 +16,6 @@ import gov.cdc.oid.ncezid.travwell.model.PackingItem;
 import gov.cdc.oid.ncezid.travwell.model.PackingSuperGroup;
 import gov.cdc.oid.ncezid.travwell.model.Profile;
 import gov.cdc.oid.ncezid.travwell.model.Trip;
-import gov.cdc.oid.ncezid.travwell.ui.trip.FragmentTripList;
 
 /**
  * Loader Task to get all of the PackingItems (To Do and Packing List)
@@ -41,10 +40,10 @@ public class GetPackingItemsTask extends AsyncTaskLoader<List<PackingItem>> {
         if (trip == null) {
             return finalPackingItems;
         }
-        if (type == FragmentTripList.PACKING_LIST) {
+        if (type == 3) {
             isTodo = false;
             deletedMedicineIds = trip.getDeletedPackingListMedicines();
-        } else if (type == FragmentTripList.TO_DO) {
+        } else if (type == 1) {
             isTodo = true;
             deletedMedicineIds = trip.getDeletedToDoMedicines();
         }
@@ -64,14 +63,13 @@ public class GetPackingItemsTask extends AsyncTaskLoader<List<PackingItem>> {
             List<PackingItem> packingItems = packingSuperGroup.getPackingItems();
             // only get items with  packing items
             if (isTodo) {
-                if (TextUtils.equals(packingSuperGroup.getSuperGroupText(), getContext().getString(R.string
-                        .header_to_do_during))) {
+                if (TextUtils.equals(packingSuperGroup.getSuperGroupText(), "During Trip")) {
                     for (PackingItem medicineItems : profileMedicines) {
                         // set the right sort orders (-1 are Headers)
                         medicineItems.setSortOrder(0);
                         medicineItems.setTodo(isTodo);
                         // set the display name to Take MEDICINE
-                        medicineItems.setDisplayName(getContext().getString(R.string.profile_medicine_take) +
+                        medicineItems.setDisplayName("Take " +
                                 medicineItems.getDisplayName());
                         medicineItems.setPackingSupperGroupOrder(packingSuperGroup.getSortOrder());
                         if (!deletedMedicineIds.contains(medicineItems.getId())) {
@@ -80,8 +78,7 @@ public class GetPackingItemsTask extends AsyncTaskLoader<List<PackingItem>> {
                     }
                 }
             } else {
-                if (TextUtils.equals(packingSuperGroup.getSuperGroupText(), getContext().getString(R.string
-                        .profile_medicines_packing_category))) {
+                if (TextUtils.equals(packingSuperGroup.getSuperGroupText(), "Prescription medicines")) {
                     for (PackingItem medicineItems : profileMedicines) {
                         // set the right sort orders (-1 are Headers)
                         medicineItems.setSortOrder(0);
