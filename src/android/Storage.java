@@ -53,7 +53,90 @@ public class Storage extends CordovaPlugin {
                         response += ",";
                     }
                 }
+                response += "],";
+                
+                response += "\"destinations\": [";
+                for(i = 0; i < destinations.size(); i++){
+                    response += convertDestinationToJSONObjectString(destinations.get(i));
+                    if(i != destinations.size() - 1){
+                        response += ",";
+                    }
+                }
+                response += "],";
+                
+                response += "\"diseases\": [";
+                for(i = 0; i < diseases.size(); i++){
+                    response += convertDiseaseToJSONObjectString(diseases.get(i));
+                    if(i != diseases.size() - 1){
+                        response += ",";
+                    }
+                }
+                response += "],";
+                
+                response += "\"documents\": [";
+                for(i = 0; i < documents.size(); i++){
+                    response += convertDocumentToJSONObjectString(documents.get(i));
+                    if(i != documents.size() - 1){
+                        response += ",";
+                    }
+                }
+                response += "],";
+                
+                response += "\"drugs\": [";
+                for(i = 0; i < drugs.size(); i++){
+                    response += convertDrugToJSONObjectString(drugs.get(i));
+                    if(i != drugs.size() - 1){
+                        response += ",";
+                    }
+                }
+                response += "],";
+                
+                response += "\"packingGroups\": [";
+                for(i = 0; i < packingGroups.size(); i++){
+                    response += convertPackingGroupToJSONObjectString(packingGroups.get(i));
+                    if(i != packingGroups.size() - 1){
+                        response += ",";
+                    }
+                }
+                response += "],";
+                
+                response += "\"packingItems\": [";
+                for(i = 0; i < packingItems.size(); i++){
+                    response += convertPackingItemToJSONObjectString(packingItems.get(i));
+                    if(i != packingItems.size() - 1){
+                        response += ",";
+                    }
+                }
+                response += "],";
+                
+                response += "\"packingSuperGroups\": [";
+                for(i = 0; i < packingSuperGroups.size(); i++){
+                    response += convertPackingSuperGroupToJSONObjectString(packingSuperGroups.get(i));
+                    if(i != packingSuperGroups.size() - 1){
+                        response += ",";
+                    }
+                }
+                response += "],";
+                
+                response += "\"profiles\": [";
+                for(i = 0; i < profiles.size(); i++){
+                    response += convertProfileToJSONObjectString(profiles.get(i));
+                    if(i != profiles.size() - 1){
+                        response += ",";
+                    }
+                }
+                response += "],";
+                
+                response += "\"trips\": [";
+                for(i = 0; i < trips.size(); i++){
+                    response += convertTripToJSONObjectString(trips.get(i));
+                    if(i != trips.size() - 1){
+                        response += ",";
+                    }
+                }
                 response += "]";
+                
+                response += "}";
                 
                 callbackContext.success(response);
                 
@@ -72,10 +155,11 @@ public class Storage extends CordovaPlugin {
     
     public String convertAlarmToJSONObjectString(Alarm alarm) {
         return "{" +
-            (alarm.drug != null ? ("\"drug\": " + convertDrugToJSONObjectString(alarm.drug) + ",") : "") + 
-            (alarm.trip != null ? ("\"trip\": " + convertTripToJSONObjectString(alarm.trip) + ",") : "")  +
-            (alarm.disease != null ? ("\"disease\": " + convertDiseaseToJSONObjectString(alarm.disease) + ",") : "")  +
-            (alarm.profile != null ? ("\"profile\": " + convertProfileToJSONObjectString(alarm.profile) + ",") : "")  +
+            "\"id\": " + ((alarm != null) ? String.valueOf(alarm.getId()) : "null") + "," +
+            "\"drug\": " + ((alarm.drug != null) ? String.valueOf(alarm.drug.getId()) : "null") + "," +
+            "\"trip\": " + ((alarm.trip != null) ? String.valueOf(alarm.trip.getId()) : "null") + "," +
+            "\"disease\": " + ((alarm.disease != null) ? String.valueOf(alarm.disease.getId()) : "null") + "," +
+            "\"profile\": " + ((alarm.profile != null) ? String.valueOf(alarm.profile.getId()) : "null") + "," +
             "\"isActive\": " + alarm.isActive + "," +
             "\"time\": " + alarm.time + "," +
             "\"title\": \"" + alarm.title + "\"," +
@@ -86,7 +170,8 @@ public class Storage extends CordovaPlugin {
     
     public String convertDestinationToJSONObjectString(Destination destination) {
         return "{" +
-            (destination.trip != null ? ("\"trip\": " + convertTripToJSONObjectString(destination.trip) + ",") : "")  +
+            "\"id\": " + ((destination != null) ? String.valueOf(destination.getId()) : "null") + "," +
+            "\"trip\": " + ((destination.trip != null) ? String.valueOf(destination.trip.getId()) : "null") + "," +
             "\"letter\": \"" + destination.letter + "\"," +
             "\"nameFriendly\": \"" + destination.nameFriendly + "\"," +
             "\"nameList\": \"" + destination.nameList + "\"," +
@@ -98,25 +183,27 @@ public class Storage extends CordovaPlugin {
             "\"isAlias\": " + destination.isAlias + "," +
             "\"parentName\": \"" + destination.parentName + "\"," +
             "\"flagUrlSmall\": \"" + destination.flagUrlSmall + "\"," +
-            "\"emergencyNumbers\": \"" + destination.emergencyNumbers + "\"}";
+            "\"emergencyNumbers\": \"" + ((destination.emergencyNumbers != null) ? destination.emergencyNumbers.replace("\n", "").replace("\r", "").replaceAll("\t", "").replaceAll("\"", "\\\\\"")  : "") + "\"}";
     }
     
     public String convertDiseaseToJSONObjectString(Disease disease) {
         return "{" +
-            (disease.trip != null ? ("\"trip\": " + convertTripToJSONObjectString(disease.trip) + ",") : "")  +
-            (disease.profile != null ? ("\"profile\": " + convertProfileToJSONObjectString(disease.profile) + ",") : "")  +
+            "\"id\": " + ((disease != null) ? String.valueOf(disease.getId()) : "null") + "," +
+            "\"trip\": " + ((disease.trip != null) ? String.valueOf(disease.trip.getId()) : "null") + "," +
+            "\"profile\": " + ((disease.profile != null) ? String.valueOf(disease.profile.getId()) : "null") + "," +
             "\"diseaseListName\": \"" + disease.diseaseListName + "\"," +
             "\"friendlyName\": \"" + disease.friendlyName + "\"," +
             "\"groupText\": \"" + disease.groupText + "\"," +
-            "\"findOutWhyHtml\": \"" + disease.findOutWhyHtml + "\"," +
+            "\"findOutWhyHtml\": \"" + disease.findOutWhyHtml.replaceAll("\t", "").replaceAll("\"", "\\\\\"") + "\"," +
             "\"diseasePageUrl\": \"" + disease.diseasePageUrl + "\"," +
             "\"drugType\": \"" + disease.drugType + "\"}";
     }
     
     public String convertDocumentToJSONObjectString(Document document) {
         return "{" +
-            (document.trip != null ? ("\"trip\": " + convertTripToJSONObjectString(document.trip) + ",") : "")  +
-            (document.profile != null ? ("\"profile\": " + convertProfileToJSONObjectString(document.profile) + ",") : "")  +
+            "\"id\": " + ((document != null) ? String.valueOf(document.getId()) : "null") + "," +
+            "\"trip\": " + ((document.trip != null) ? String.valueOf(document.trip.getId()) : "null") + "," +
+            "\"profile\": " + ((document.profile != null) ? String.valueOf(document.profile.getId()) : "null") + "," +
             "\"name\": \"" + document.name + "\"," +
             "\"category\": \"" + document.category + "\"," +
             "\"localImagePath\": \"" + document.localImagePath + "\"," +
@@ -127,9 +214,10 @@ public class Storage extends CordovaPlugin {
     
     public String convertDrugToJSONObjectString(Drug drug) {
         return "{" +
-            (drug.trip != null ? ("\"trip\": " + convertTripToJSONObjectString(drug.trip) + ",") : "")  +
-            (drug.disease != null ? ("\"disease\": " + convertDiseaseToJSONObjectString(drug.disease) + ",") : "")  +
-            (drug.profile != null ? ("\"profile\": " + convertProfileToJSONObjectString(drug.profile) + ",") : "")  +
+            "\"id\": " + ((drug != null) ? String.valueOf(drug.getId()) : "null") + "," +
+            "\"trip\": " + ((drug.trip != null) ? String.valueOf(drug.trip.getId()) : "null") + "," +
+            "\"disease\": " + ((drug.disease != null) ? String.valueOf(drug.disease.getId()) : "null") + "," +
+            "\"profile\": " + ((drug.profile != null) ? String.valueOf(drug.profile.getId()) : "null") + "," +
             "\"displayName\": \"" + drug.displayName + "\"," +
             "\"friendlyName\": \"" + drug.friendlyName + "\"," +
             "\"duration\": \"" + drug.duration + "\"," +
@@ -143,8 +231,9 @@ public class Storage extends CordovaPlugin {
     
     public String convertPackingGroupToJSONObjectString(PackingGroup packingGroup) {
         return "{" +
-            (packingGroup.packingSuperGroup != null ? ("\"packingSuperGroup\": " + convertPackingSuperGroupToJSONObjectString(packingGroup.packingSuperGroup) + ",") : "")  +
-            (packingGroup.trip != null ? ("\"trip\": " + convertTripToJSONObjectString(packingGroup.trip) + ",") : "")  +
+            "\"id\": " + ((packingGroup != null) ? String.valueOf(packingGroup.getId()) : "null") + "," +
+            "\"packingSuperGroup\": " + ((packingGroup.packingSuperGroup != null) ? String.valueOf(packingGroup.packingSuperGroup.getId()) : "null") + "," +
+            "\"trip\": " + ((packingGroup.trip != null) ? String.valueOf(packingGroup.trip.getId()) : "null") + "," +
             "\"groupId\": " + packingGroup.groupId + "," +
             "\"sortOrder\": " + packingGroup.sortOrder + "," +
             "\"groupText\": \"" + packingGroup.groupText + "\"," +
@@ -153,12 +242,13 @@ public class Storage extends CordovaPlugin {
     
     public String convertPackingItemToJSONObjectString(PackingItem packingItem) {
         return "{" +
-            (packingItem.trip != null ? ("\"trip\": " + convertTripToJSONObjectString(packingItem.trip) + ",") : "")  +
-            (packingItem.packingGroup != null ? ("\"packingGroup\": " + convertPackingGroupToJSONObjectString(packingItem.packingGroup) + ",") : "")  +
-            (packingItem.packingSuperGroup != null ? ("\"packingSuperGroup\": " + convertPackingSuperGroupToJSONObjectString(packingItem.packingSuperGroup) + ",") : "")  +
+            "\"id\": " + ((packingItem != null) ? String.valueOf(packingItem.getId()) : "null") + "," +
+            "\"trip\": " + ((packingItem.trip != null) ? String.valueOf(packingItem.trip.getId()) : "null") + "," +
+            "\"packingGroup\": " + ((packingItem.packingGroup != null) ? String.valueOf(packingItem.packingGroup.getId()) : "null") + "," +
+            "\"packingSuperGroup\": " + ((packingItem.packingSuperGroup != null) ? String.valueOf(packingItem.packingSuperGroup.getId()) : "null") + "," +
             "\"itemId\": " + packingItem.itemId + "," +
             "\"displayName\": \"" + packingItem.displayName + "\"," +
-            "\"descriptionContent\": \"" + packingItem.descriptionContent + "\"," +
+            "\"descriptionContent\": \"" + ((packingItem.descriptionContent != null) ? packingItem.descriptionContent.replace("\n", "").replace("\r", "").replaceAll("\t", "").replaceAll("\"", "\\\\\"") : "") + "\"," +
             "\"appSpecificContent\": \"" + packingItem.appSpecificContent + "\"," +
             "\"sortOrder\": " + packingItem.sortOrder + "," +
             "\"isTodo\": " + packingItem.isTodo + "," +
@@ -168,7 +258,8 @@ public class Storage extends CordovaPlugin {
     
     public String convertPackingSuperGroupToJSONObjectString(PackingSuperGroup packingSuperGroup) {
         return "{" +
-            (packingSuperGroup.trip != null ? ("\"trip\": " + convertTripToJSONObjectString(packingSuperGroup.trip) + ",") : "")  +
+            "\"id\": " + ((packingSuperGroup != null) ? String.valueOf(packingSuperGroup.getId()) : "null") + "," +
+            "\"trip\": " + ((packingSuperGroup.trip != null) ? String.valueOf(packingSuperGroup.trip.getId()) : "null") + "," +
             "\"superGroupId\": " + packingSuperGroup.superGroupId + "," +
             "\"sortOrder\": " + packingSuperGroup.sortOrder + "," +
             "\"superGroupText\": \"" + packingSuperGroup.superGroupText + "\"," +
@@ -177,6 +268,7 @@ public class Storage extends CordovaPlugin {
     
     public String convertProfileToJSONObjectString(Profile profile) {
         return "{" +
+            "\"id\": " + ((profile != null) ? String.valueOf(profile.getId()) : "null") + "," +
             "\"firstName\": \"" + profile.firstName + "\"," +
             "\"lastName\": \"" + profile.lastName + "\"," +
             "\"lastUpdatedDestinations\": " + profile.lastUpdatedDestinations + "," +
@@ -189,7 +281,8 @@ public class Storage extends CordovaPlugin {
     
     public String convertTripToJSONObjectString(Trip trip) {
         return "{" +
-            (trip.profile != null ? ("\"profile\": " + convertProfileToJSONObjectString(trip.profile) + ",") : "")  +
+            "\"id\": " + ((trip != null) ? String.valueOf(trip.getId()) : "null") + "," +
+            "\"profile\": " + ((trip.profile != null) ? String.valueOf(trip.profile.getId()) : "null") + "," +
             "\"name\": \"" + trip.name + "\"," +
             "\"endTime\": " + trip.endTime + "," +
             "\"startTime\": " + trip.startTime + "," +
