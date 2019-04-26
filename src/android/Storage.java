@@ -223,6 +223,10 @@ public class Storage extends CordovaPlugin {
             "\"duration\": \"" + drug.duration + "\"," +
             "\"alertText\": \"" + drug.alertText + "\"," +
             "\"tsUpdated\": \"" + drug.tsUpdated + "\"," +
+            "\"timeStarted\": " + drug.timeStarted + "," +
+            "\"isCompleted\": " + drug.isCompleted + "," +
+            "\"isAlarmOn\": " + drug.isAlarmOn + "," +
+            "\"notes\": \"" + drug.notes + "\"," +
             "\"reminderInstructions\": \"" + drug.reminderInstructions + "\"," +
             "\"diseaseFriendlyName\": \"" + drug.diseaseFriendlyName + "\"," +
             "\"drugType\": \"" + drug.drugType + "\"," +
