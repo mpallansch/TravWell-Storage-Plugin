@@ -46,15 +46,6 @@ public class Storage extends CordovaPlugin {
                 String response = "{";
                 int i;
                 
-                response += "\"alarms\": [";
-                for(i = 0; i < alarms.size(); i++){
-                    response += convertAlarmToJSONObjectString(alarms.get(i));
-                    if(i != alarms.size() - 1){
-                        response += ",";
-                    }
-                }
-                response += "],";
-                
                 response += "\"destinations\": [";
                 for(i = 0; i < destinations.size(); i++){
                     response += convertDestinationToJSONObjectString(destinations.get(i));
@@ -213,7 +204,7 @@ public class Storage extends CordovaPlugin {
     }
     
     public String convertDrugToJSONObjectString(Drug drug) {
-        return "{" +
+        String toReturn = "{" +
             "\"id\": " + ((drug != null) ? String.valueOf(drug.getId()) : "null") + "," +
             "\"trip\": " + ((drug.trip != null) ? String.valueOf(drug.trip.getId()) : "null") + "," +
             "\"disease\": " + ((drug.disease != null) ? String.valueOf(drug.disease.getId()) : "null") + "," +
@@ -230,7 +221,23 @@ public class Storage extends CordovaPlugin {
             "\"reminderInstructions\": \"" + drug.reminderInstructions + "\"," +
             "\"diseaseFriendlyName\": \"" + drug.diseaseFriendlyName + "\"," +
             "\"drugType\": \"" + drug.drugType + "\"," +
-            "\"diseaseNameList\": \"" + drug.diseaseNameList + "\"}";
+            "\"diseaseNameList\": \"" + drug.diseaseNameList + "\"";
+        
+            List<Alarm> alarms = drug.getAlarms();
+            if(alarms.size() > 0){
+                toReturn += ", \"alarms\": [";
+                for(int i = 0; i < alarms.size(); i++){
+                    toReturn += convertAlarmToJSONObjectString(alarms.get(i));
+                    if(i != alarms.size() - 1){
+                        toReturn += ",";
+                    }
+                }
+                toReturn += "]";
+            }
+        
+            toReturn += "}";
+        
+            return toReturn;
     }
     
     public String convertPackingGroupToJSONObjectString(PackingGroup packingGroup) {
@@ -245,7 +252,7 @@ public class Storage extends CordovaPlugin {
     }
     
     public String convertPackingItemToJSONObjectString(PackingItem packingItem) {
-        return "{" +
+        String toReturn = "{" +
             "\"id\": " + ((packingItem != null) ? String.valueOf(packingItem.getId()) : "null") + "," +
             "\"trip\": " + ((packingItem.trip != null) ? String.valueOf(packingItem.trip.getId()) : "null") + "," +
             "\"packingGroup\": " + ((packingItem.packingGroup != null) ? String.valueOf(packingItem.packingGroup.getId()) : "null") + "," +
@@ -254,10 +261,28 @@ public class Storage extends CordovaPlugin {
             "\"displayName\": \"" + packingItem.displayName + "\"," +
             "\"descriptionContent\": \"" + ((packingItem.descriptionContent != null) ? packingItem.descriptionContent.replace("\n", "").replace("\r", "").replaceAll("\t", "").replaceAll("\"", "\\\\\"") : "") + "\"," +
             "\"appSpecificContent\": \"" + packingItem.appSpecificContent + "\"," +
+            "\"notes\": \"" + packingItem.notes + "\"," +
             "\"sortOrder\": " + packingItem.sortOrder + "," +
+            "\"isCompleted\": " + packingItem.isCompleted + "," +
             "\"isTodo\": " + packingItem.isTodo + "," +
             "\"isAlarmOn\": " + packingItem.isAlarmOn + "," +
-            "\"packingSupperGroupOrder\": " + packingItem.packingSupperGroupOrder + "}";
+            "\"packingSupperGroupOrder\": " + packingItem.packingSupperGroupOrder;
+        
+            List<Alarm> alarms = packingItem.getAlarms();
+            if(alarms.size() > 0){
+                toReturn += ", \"alarms\": [";
+                for(int i = 0; i < alarms.size(); i++){
+                    toReturn += convertAlarmToJSONObjectString(alarms.get(i));
+                    if(i != alarms.size() - 1){
+                        toReturn += ",";
+                    }
+                }
+                toReturn += "]";
+            }
+        
+            toReturn += "}";
+        
+            return toReturn;
     }
     
     public String convertPackingSuperGroupToJSONObjectString(PackingSuperGroup packingSuperGroup) {
