@@ -69,6 +69,7 @@
     <platform name="ios">
 
         <framework src="MagicalRecord" type="podspec" spec="2.2" />
+	<framework src="RestKit" type="podspec" spec="0.20.3" />
 
         <podspec>
             <config>
@@ -76,6 +77,7 @@
             </config>
             <pods use-frameworks="true">
                 <pod name="MagicalRecord" spec="2.2" />
+                <pod name="RestKit" spec="0.20.3" />
             </pods>
         </podspec>
 
