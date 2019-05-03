@@ -89,6 +89,10 @@
 
         <header-file src="src/ios/Storage.h" />
         <source-file src="src/ios/Storage.m" />
+        <header-file src="src/ios/TSApi" />
+        <source-file src="src/ios/TSApi" />
+        <header-file src="src/ios/TsAppDelegate.h" />
+        <source-file src="src/ios/TsAppDelegate.m" />
 
     </platform>
 
