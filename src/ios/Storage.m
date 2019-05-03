@@ -1,7 +1,17 @@
 #import "Storage.h"
-#import "TSApi/Models/CoreData/TSDisease.h"
-#import <MagicalRecord/MagicalRecord.h>
+#import "TSDisease.h"
+#import "TSObjectMapping.h"
 #import <Cordova/CDVPlugin.h>
+
+// Use a class extension to expose access to MagicalRecord's private setter methods
+@interface NSManagedObjectContext ()
++ (void)MR_setRootSavingContext:(NSManagedObjectContext*)context;
++ (void)MR_setDefaultContext:(NSManagedObjectContext*)moc;
+@end
+
+@interface Storage()
+@property(strong, nonatomic) NSManagedObjectContext* sharedManagedObjectContext;
+@end
 
 @implementation Storage
 
@@ -9,8 +19,6 @@
 {
     CDVPluginResult* pluginResult = nil;
     NSString* message = [command.arguments objectAtIndex:0];
-
-    [MagicalRecord enableShorthandMethods];
 
 // Setup CoreData with RestKit+ MagicalRecord
     NSURL* modelURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"TSCoreDataModels"
@@ -38,6 +46,9 @@
     [MagicalRecord setupAutoMigratingCoreDataStack];
 
     NSArray* diseases = [TSDisease MR_findAll];
+    
+    NSLog(@"Here");
+    NSLog(@"%@", diseases);
 
     if (message != nil && [message length] > 0) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:message];

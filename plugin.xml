@@ -87,11 +87,7 @@
             </feature>
         </config-file>
 
-        <header-file src="src/ios/Storage.h" />
-        <source-file src="src/ios/Storage.m" />
-        <source-file src="src/ios/TSApi" />
-        <header-file src="src/ios/TsAppDelegate.h" />
-        <source-file src="src/ios/TsAppDelegate.m" />
+        <source-file src="src/ios" />
 
     </platform>
 
