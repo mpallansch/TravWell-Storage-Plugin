@@ -1,4 +1,4 @@
-﻿<plugin
+<plugin
   xmlns="http://www.phonegap.com/ns/plugins/1.0"
   id="old-storage-plugin"
   version="1.0">
@@ -67,6 +67,17 @@
     </platform>
     
     <platform name="ios">
+
+        <framework src="MagicalRecord" type="podspec" spec="2.2" />
+
+        <podspec>
+            <config>
+                <source url="https://github.com/CocoaPods/Specs.git"/>
+            </config>
+            <pods use-frameworks="true">
+                <pod name="MagicalRecord" spec="2.2" />
+            </pods>
+        </podspec>
 
         <config-file target="config.xml" parent="/*">
             <feature name="Storage">

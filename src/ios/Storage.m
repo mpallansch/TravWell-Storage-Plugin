@@ -1,4 +1,5 @@
-﻿#import "Storage.h"
+#import "Storage.h"
+#import "TSApi/Models/CoreData/TSDisease.h"
 #import <Cordova/CDVPlugin.h>
 
 @implementation Storage
@@ -7,6 +8,8 @@
 {
     CDVPluginResult* pluginResult = nil;
     NSString* message = [command.arguments objectAtIndex:0];
+
+    NSArray* diseases = [TSDisease MR_findAll];
 
     if (message != nil && [message length] > 0) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:message];

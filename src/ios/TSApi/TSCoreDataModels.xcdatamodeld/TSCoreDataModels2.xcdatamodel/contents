@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="TSAdviceItem" representedClassName="TSAdviceItem" syncable="YES">
+        <attribute name="completed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reminderId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="disease" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TSDisease" inverseName="adviceItem" inverseEntity="TSDisease" syncable="YES"/>
+        <relationship name="trips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TSTrip" inverseName="adviceItems" inverseEntity="TSTrip" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TSUser" inverseName="adviceItems" inverseEntity="TSUser" syncable="YES"/>
+    </entity>
+    <entity name="TSDestination" representedClassName="TSDestination" syncable="YES">
+        <attribute name="emergencyNumbers" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="flagUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isAlias" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isoA2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="letter" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nameFriendly" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nameList" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nameOfficial" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="namePlugin" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nameYellowFeverMalariaTable" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="travelNoticesAnchorName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="webLink" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="diseases" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TSDisease" inverseName="destination" inverseEntity="TSDisease" syncable="YES"/>
+        <relationship name="packingList" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TSPackingList" inverseName="destination" inverseEntity="TSPackingList" syncable="YES"/>
+        <relationship name="trip" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="TSTrip" inverseName="destinations" inverseEntity="TSTrip" syncable="YES"/>
+    </entity>
+    <entity name="TSDisease" representedClassName="TSDisease" syncable="YES">
+        <attribute name="dateOfVaccination" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="diseaseListName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="diseasePageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="findOutWhyHtml" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="friendlyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="groupText" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="adviceItem" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TSAdviceItem" inverseName="disease" inverseEntity="TSAdviceItem" syncable="YES"/>
+        <relationship name="destination" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TSDestination" inverseName="diseases" inverseEntity="TSDestination" syncable="YES"/>
+        <relationship name="drugs" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TSDrug" inverseName="diseases" inverseEntity="TSDrug" syncable="YES"/>
+        <relationship name="selectedDrug" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TSDrug" inverseName="disease" inverseEntity="TSDrug" syncable="YES"/>
+    </entity>
+    <entity name="TSDoc" representedClassName="TSDoc" syncable="YES">
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="trip" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TSTrip" inverseName="docs" inverseEntity="TSTrip" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TSUser" inverseName="docs" inverseEntity="TSUser" syncable="YES"/>
+    </entity>
+    <entity name="TSDrug" representedClassName="TSDrug" syncable="YES">
+        <attribute name="alertText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="friendlyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reminderInstructions" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="searchTerms" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="disease" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TSDisease" inverseName="selectedDrug" inverseEntity="TSDisease" syncable="YES"/>
+        <relationship name="diseases" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TSDisease" inverseName="drugs" inverseEntity="TSDisease" syncable="YES"/>
+        <relationship name="interval" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TSReminderInterval" inverseName="drug" inverseEntity="TSReminderInterval" syncable="YES"/>
+    </entity>
+    <entity name="TSPackingList" representedClassName="TSPackingList" syncable="YES">
+        <attribute name="friendlyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="packingListId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="destination" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TSDestination" inverseName="packingList" inverseEntity="TSDestination" syncable="YES"/>
+        <relationship name="superGroups" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TSPackingListSuperGroup" inverseName="packingList" inverseEntity="TSPackingListSuperGroup" syncable="YES"/>
+    </entity>
+    <entity name="TSPackingListGroup" representedClassName="TSPackingListGroup" syncable="YES">
+        <attribute name="groupId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="groupText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sortOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TSPackingListItem" inverseName="group" inverseEntity="TSPackingListItem" syncable="YES"/>
+        <relationship name="superGroup" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TSPackingListSuperGroup" inverseName="groups" inverseEntity="TSPackingListSuperGroup" syncable="YES"/>
+    </entity>
+    <entity name="TSPackingListItem" representedClassName="TSPackingListItem" syncable="YES">
+        <attribute name="appSpecificContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="completed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="descriptionContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itemId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sortOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userModifiedCategory" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="group" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TSPackingListGroup" inverseName="items" inverseEntity="TSPackingListGroup" syncable="YES"/>
+        <relationship name="trip" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TSTrip" inverseName="packingListItems" inverseEntity="TSTrip" syncable="YES"/>
+    </entity>
+    <entity name="TSPackingListSuperGroup" representedClassName="TSPackingListSuperGroup" syncable="YES">
+        <attribute name="sortOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="superGroupId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="superGroupText" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TSPackingListGroup" inverseName="superGroup" inverseEntity="TSPackingListGroup" syncable="YES"/>
+        <relationship name="packingList" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TSPackingList" inverseName="superGroups" inverseEntity="TSPackingList" syncable="YES"/>
+    </entity>
+    <entity name="TSReminderInterval" representedClassName="TSReminderInterval" syncable="YES">
+        <attribute name="daysOut" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="drug" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TSDrug" inverseName="interval" inverseEntity="TSDrug" syncable="YES"/>
+    </entity>
+    <entity name="TSToDoItem" representedClassName="TSToDoItem" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="completed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reminderId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uniqueId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="trip" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TSTrip" inverseName="toDoItems" inverseEntity="TSTrip" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TSUser" inverseName="medicineTodos" inverseEntity="TSUser" syncable="YES"/>
+    </entity>
+    <entity name="TSTrip" representedClassName="TSTrip" syncable="YES">
+        <attribute name="completedProfilePackingListIds" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="completedProfileToDoIds" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="deletedProfilePackingListIds" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="deletedProfileToDoIds" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="adviceItems" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="TSAdviceItem" inverseName="trips" inverseEntity="TSAdviceItem" syncable="YES"/>
+        <relationship name="destinations" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="TSDestination" inverseName="trip" inverseEntity="TSDestination" syncable="YES"/>
+        <relationship name="docs" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TSDoc" inverseName="trip" inverseEntity="TSDoc" syncable="YES"/>
+        <relationship name="packingListItems" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="TSPackingListItem" inverseName="trip" inverseEntity="TSPackingListItem" syncable="YES"/>
+        <relationship name="toDoItems" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="TSToDoItem" inverseName="trip" inverseEntity="TSToDoItem" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TSUser" inverseName="trip" inverseEntity="TSUser" syncable="YES"/>
+    </entity>
+    <entity name="TSUser" representedClassName="TSUser" syncable="YES">
+        <attribute name="startScreen" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="adviceItems" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TSAdviceItem" inverseName="user" inverseEntity="TSAdviceItem" syncable="YES"/>
+        <relationship name="docs" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TSDoc" inverseName="user" inverseEntity="TSDoc" syncable="YES"/>
+        <relationship name="medicineTodos" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TSToDoItem" inverseName="user" inverseEntity="TSToDoItem" syncable="YES"/>
+        <relationship name="trip" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TSTrip" inverseName="user" inverseEntity="TSTrip" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="TSAdviceItem" positionX="-81" positionY="855" width="128" height="150"/>
+        <element name="TSDestination" positionX="-198" positionY="165" width="128" height="285"/>
+        <element name="TSDisease" positionX="-72" positionY="495" width="128" height="195"/>
+        <element name="TSDoc" positionX="-0" positionY="-135" width="128" height="105"/>
+        <element name="TSDrug" positionX="99" positionY="504" width="128" height="180"/>
+        <element name="TSPackingList" positionX="655" positionY="117" width="128" height="105"/>
+        <element name="TSPackingListGroup" positionX="513" positionY="114" width="128" height="120"/>
+        <element name="TSPackingListItem" positionX="-0" positionY="9" width="128" height="193"/>
+        <element name="TSPackingListSuperGroup" positionX="232" positionY="114" width="128" height="120"/>
+        <element name="TSReminderInterval" positionX="241" positionY="0" width="128" height="90"/>
+        <element name="TSToDoItem" positionX="9" positionY="-328" width="128" height="163"/>
+        <element name="TSTrip" positionX="-378" positionY="-90" width="128" height="223"/>
+        <element name="TSUser" positionX="-414" positionY="-370" width="128" height="118"/>
+    </elements>
+</model>
