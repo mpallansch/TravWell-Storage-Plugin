@@ -87,7 +87,37 @@
             </feature>
         </config-file>
 
-        <source-file src="src/ios" target-dir="src" />
+        <source-file src="Storage.m" />
+        <header-file src="Storage.h" />
+        <source-file src="TSAdviceItem.m" />
+        <header-file src="TSAdviceItem.h" />
+        <source-file src="TSCoreDataModels.xcdatamodeld" />
+        <source-file src="TSDestination.m" />
+        <source-file src="TSDestination.h" />
+        <source-file src="TSDisease.m" />
+        <header-file src="TSDisease.h" />
+        <source-file src="TSDoc.m" />
+        <header-file src="TSDoc.h" />
+        <source-file src="TSDrug.m" />
+        <header-file src="TSDrug.h" />
+        <source-file src="TSObjectMapping.m" />
+        <header-file src="TSObjectMapping.h" />
+        <source-file src="TSPackingList.m" />
+        <header-file src="TSPackingList.h" />
+        <source-file src="TSPackingListGroup.m" />
+        <header-file src="TSPackingListGroup.h" />
+        <source-file src="TSPackingListItem.m" />
+        <header-file src="TSPackingListItem.h" />
+        <source-file src="TSPackingListSuperGroup.m" />
+        <header-file src="TSPackingListSuperGroup.h" />
+        <source-file src="TSReminderInterval.m" />
+        <header-file src="TSReminderInterval.h" />
+        <source-file src="TSToDoItem.m" />
+        <header-file src="TSToDoItem.h" />
+        <source-file src="TSTrip.m" />
+        <header-file src="TSTrip.h" />
+        <source-file src="TSUser.m" />
+        <header-file src="TSUser.h" />
 
     </platform>
 
