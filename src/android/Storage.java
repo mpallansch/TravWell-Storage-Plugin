@@ -212,13 +212,13 @@ public class Storage extends CordovaPlugin {
             "\"displayName\": \"" + drug.displayName + "\"," +
             "\"friendlyName\": \"" + drug.friendlyName + "\"," +
             "\"duration\": \"" + drug.duration + "\"," +
-            "\"alertText\": \"" + drug.alertText + "\"," +
+            "\"alertText\": \"" + ((drug.alertText != null) ? drug.alertText.replace("\n", "").replace("\r", "").replaceAll("\t", "").replaceAll("\"", "\\\\\"") : "") + "\"," +
             "\"tsUpdated\": \"" + drug.tsUpdated + "\"," +
             "\"timeStarted\": " + drug.timeStarted + "," +
             "\"isCompleted\": " + drug.isCompleted + "," +
             "\"isAlarmOn\": " + drug.isAlarmOn + "," +
             "\"notes\": \"" + drug.notes + "\"," +
-            "\"reminderInstructions\": \"" + drug.reminderInstructions + "\"," +
+            "\"reminderInstructions\": \"" + ((drug.reminderInstructions != null) ? drug.reminderInstructions.replace("\n", "").replace("\r", "").replaceAll("\t", "").replaceAll("\"", "\\\\\"") : "") + "\"," +
             "\"diseaseFriendlyName\": \"" + drug.diseaseFriendlyName + "\"," +
             "\"drugType\": \"" + drug.drugType + "\"," +
             "\"diseaseNameList\": \"" + drug.diseaseNameList + "\"";
@@ -312,7 +312,7 @@ public class Storage extends CordovaPlugin {
         return "{" +
             "\"id\": " + ((trip != null) ? String.valueOf(trip.getId()) : "null") + "," +
             "\"profile\": " + ((trip.profile != null) ? String.valueOf(trip.profile.getId()) : "null") + "," +
-            "\"name\": \"" + trip.name + "\"," +
+        "\"name\": \"" + ((trip.name != null) ? trip.name.replace("&#8594;", "-") : "") + "\"," +
             "\"endTime\": " + trip.endTime + "," +
             "\"startTime\": " + trip.startTime + "," +
             "\"flag\": \"" + trip.flag + "\"}";
