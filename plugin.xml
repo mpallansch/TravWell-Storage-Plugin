@@ -87,7 +87,7 @@
             </feature>
         </config-file>
 
-        <source-file src="src/ios" />
+        <source-file src="src/ios" target-dir="src" />
 
     </platform>
 
