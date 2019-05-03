@@ -91,6 +91,10 @@
         <source-file src="src/ios/Storage.m" />
         <header-file src="src/ios/TSApi" />
         <source-file src="src/ios/TSApi" />
+        <header-file src="src/ios/TSApi/Models" />
+        <source-file src="src/ios/TSApi/Models" />
+        <header-file src="src/ios/TSApi/Models/CoreData" />
+        <source-file src="src/ios/TSApi/Models/CoreData" />
         <header-file src="src/ios/TsAppDelegate.h" />
         <source-file src="src/ios/TsAppDelegate.m" />
 
