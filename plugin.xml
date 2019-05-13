@@ -69,7 +69,8 @@
     <platform name="ios">
 
         <framework src="MagicalRecord" type="podspec" spec="2.2" />
-	<framework src="RestKit" type="podspec" spec="0.20.3" />
+        <framework src="RestKit" type="podspec" spec="0.20.3" />
+        <framework src="ReactiveCocoa" type="podspec" spec="2.4" />
 
         <podspec>
             <config>
@@ -78,6 +79,7 @@
             <pods use-frameworks="true">
                 <pod name="MagicalRecord" spec="2.2" />
                 <pod name="RestKit" spec="0.20.3" />
+                <pod name="ReactiveCocoa" spec="2.4" />
             </pods>
         </podspec>
 
@@ -86,7 +88,13 @@
                 <param name="ios-package" value="Storage" />
             </feature>
         </config-file>
-
+        
+        <source-file src="src/ios/DHNotificationGroup.h" />
+        <source-file src="src/ios/DHNotificationGroup.m" />
+        <source-file src="src/ios/DHNotifications.h" />
+        <source-file src="src/ios/DHNotifications.m" />
+        <source-file src="src/ios/DHNotifier.h" />
+        <source-file src="src/ios/DHNotifier.m" />
         <source-file src="src/ios/Storage.m" />
         <header-file src="src/ios/Storage.h" />
         <source-file src="src/ios/TSAdviceItem.m" />
