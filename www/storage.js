@@ -1,4 +1,3 @@
-cordova.define("old-storage-plugin.Storage", function(require, exports, module) {
 var exec = require('cordova/exec');
 
 exports.getPreviousStorage = function(str, callback) {
@@ -13,4 +12,3 @@ exports.getPreviousStorage = function(str, callback) {
         callback('Error fetching old data. ' + err);
     }, "Storage", "getPreviousStorage", [str]);
 }
-});
