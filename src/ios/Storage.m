@@ -1,6 +1,8 @@
 #import "DHNotifications.h"
+#import "DHNotificationGroup.h"
 #import "Storage.h"
 #import "TSTrip.h"
+#import "TSDocument.h"
 #import "TSDisease.h"
 #import "TSDrug.h"
 #import "TSAdviceItem.h"
@@ -27,7 +29,6 @@
 - (void)getPreviousStorage:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
-    NSString* message = [command.arguments objectAtIndex:0];
     
     // Setup CoreData with RestKit+ MagicalRecord
     NSURL* modelURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"TSCoreDataModels"
@@ -44,7 +45,6 @@
                                                  error:&error];
     [managedObjectStore createManagedObjectContexts];
     
-    // (hopefully?) Configure MagicalRecord to use RestKit's Core Data stack
     [NSPersistentStoreCoordinator MR_setDefaultStoreCoordinator:managedObjectStore.persistentStoreCoordinator];
     [NSManagedObjectContext MR_setRootSavingContext:managedObjectStore.persistentStoreManagedObjectContext];
     [NSManagedObjectContext MR_setDefaultContext:managedObjectStore.mainQueueManagedObjectContext];
@@ -76,6 +76,7 @@
     
     JSONString = [JSONString stringByAppendingString:@"\"trips\": ["];
     NSArray* trips = [TSTrip MR_findAll];
+    NSArray* allDocs = [TSDocument MR_findAll];
     NSUInteger tripCount = 0;
     for(id trip in trips){
         JSONString = [JSONString stringByAppendingString:@"{\"id\": "];
@@ -176,7 +177,32 @@
         JSONString = [JSONString stringByAppendingString:[doc valueForKey:@"fileName"]];
         JSONString = [JSONString stringByAppendingString:@"\"}"];
         
-        if(docsCount != (docObjects.count - 1)){
+        if(allDocs.count > 0 || docsCount != (docObjects.count - 1)){
+            JSONString = [JSONString stringByAppendingString:@","];
+        }
+        docsCount++;
+    }
+    
+    docsCount = 0;
+    for(id doc in allDocs){
+        bool found = false;
+        for(id otherDoc in docObjects){
+            if([[doc valueForKey:@"fileName"] isEqualToString:[otherDoc valueForKey:@"fileName"]] && [[doc valueForKey:@"name"] isEqualToString:[otherDoc valueForKey:@"name"]]){
+                found = true;
+            }
+        }
+        if(found){
+            break;
+        }
+        JSONString = [JSONString stringByAppendingString:@"{\"name\": \""];
+        JSONString = [JSONString stringByAppendingString:[doc valueForKey:@"name"]];
+        JSONString = [JSONString stringByAppendingString:@"\","];
+        
+        JSONString = [JSONString stringByAppendingString:@"\"localImagePath\": \""];
+        JSONString = [JSONString stringByAppendingString:[doc valueForKey:@"fileName"]];
+        JSONString = [JSONString stringByAppendingString:@"\"}"];
+        
+        if(docsCount != (allDocs.count - 1)){
             JSONString = [JSONString stringByAppendingString:@","];
         }
         docsCount++;
@@ -196,10 +222,35 @@
             JSONString = [JSONString stringByAppendingString:[drug valueForKey:@"friendlyName"]];
             JSONString = [JSONString stringByAppendingString:@"\","];
             
-            JSONString = [JSONString stringByAppendingString:@"\"trip\": null,"];
+            NSString* reminderId = [advice valueForKey:@"reminderId"];
+            DHNotificationGroup* notification = [DHNotifications notificationWithId:reminderId];
             
-            JSONString = [JSONString stringByAppendingString:@"\"isCompleted\": "];
-            if([advice valueForKey:@"completed"]){
+            if(notification != nil){
+                JSONString = [JSONString stringByAppendingString:@"\"alarms\": ["];
+                NSArray* notifiers = notification.notifiers;
+                NSUInteger notifiersCount = 0;
+                for(id notifier in notifiers){
+                    JSONString = [JSONString stringByAppendingString:@"{\"time\": "];
+                    JSONString = [JSONString stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[[notifier valueForKey:@"_notificationFireDate"] timeIntervalSince1970] * 1000]];
+                    JSONString = [JSONString stringByAppendingString:@",\"isActive\": "];
+                    if([[notifier valueForKey:@"enabled"] boolValue]){
+                        JSONString = [JSONString stringByAppendingString:@"true"];
+                    } else {
+                        JSONString = [JSONString stringByAppendingString:@"false"];
+                    }
+                    JSONString = [JSONString stringByAppendingString:@"}"];
+                    
+                    if(notifiersCount != (notifiers.count - 1)){
+                        JSONString = [JSONString stringByAppendingString:@","];
+                    }
+                    notifiersCount++;
+                }
+                JSONString = [JSONString stringByAppendingString:@"],"];
+            }
+            JSONString = [JSONString stringByAppendingString:@"\"trip\": null"];
+            
+            JSONString = [JSONString stringByAppendingString:@",\"isCompleted\": "];
+            if([[advice valueForKey:@"completed"] boolValue]){
                 JSONString = [JSONString stringByAppendingString:@"true"];
             } else {
                 JSONString = [JSONString stringByAppendingString:@"false"];
@@ -285,8 +336,31 @@
         JSONString = [JSONString stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long) [[todoTripIds objectAtIndex:todosCount] integerValue]]];
         JSONString = [JSONString stringByAppendingString:@","];
         
-        NSString* foo = [todo valueForKey:@"reminderId"];
-        [DHNotifications notificationWithId:foo];
+        NSString* reminderId = [todo valueForKey:@"reminderId"];
+        DHNotificationGroup* notification = [DHNotifications notificationWithId:reminderId];
+        
+        if(notification != nil){
+            JSONString = [JSONString stringByAppendingString:@"\"alarms\": ["];
+            NSArray* notifiers = notification.notifiers;
+            NSUInteger notifiersCount = 0;
+            for(id notifier in notifiers){
+                JSONString = [JSONString stringByAppendingString:@"{\"time\": "];
+                JSONString = [JSONString stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[[notifier valueForKey:@"_notificationFireDate"] timeIntervalSince1970] * 1000]];
+                JSONString = [JSONString stringByAppendingString:@",\"isActive\": "];
+                if([[notifier valueForKey:@"enabled"] boolValue]){
+                    JSONString = [JSONString stringByAppendingString:@"true"];
+                } else {
+                    JSONString = [JSONString stringByAppendingString:@"false"];
+                }
+                JSONString = [JSONString stringByAppendingString:@"}"];
+                
+                if(notifiersCount != (notifiers.count - 1)){
+                    JSONString = [JSONString stringByAppendingString:@","];
+                }
+                notifiersCount++;
+            }
+            JSONString = [JSONString stringByAppendingString:@"],"];
+        }
         
         JSONString = [JSONString stringByAppendingString:@"\"packingSuperGroup\": "];
         
@@ -373,27 +447,6 @@
     }
     
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-}
-
-- (NSString*)objectToJSONString:(id) object types:(NSArray*) types keys:(NSArray*) keys{
-    NSUInteger count = 0;
-    NSString *JSONString = @"{";
-    for(NSString *key in keys){
-        JSONString = [JSONString stringByAppendingString:@"\""];
-        JSONString = [JSONString stringByAppendingString:key];
-        JSONString = [JSONString stringByAppendingString:@"\": "];
-        if([[types objectAtIndex:count] isEqualToString:@"string"]){
-            JSONString = [JSONString stringByAppendingString:@"\""];
-            JSONString = [JSONString stringByAppendingString:[object valueForKey:key]];
-            JSONString = [JSONString stringByAppendingString:@"\""];
-        }
-        if(count != (keys.count - 1)){
-            JSONString = [JSONString stringByAppendingString:@","];
-        }
-        count++;
-    }
-    JSONString = [JSONString stringByAppendingString:@"}"];
-    return JSONString;
 }
 
 @end
