@@ -2,7 +2,7 @@
 #import "DHNotificationGroup.h"
 #import "Storage.h"
 #import "TSTrip.h"
-#import "TSDocument.h"
+#import "TSDoc.h"
 #import "TSDisease.h"
 #import "TSDrug.h"
 #import "TSAdviceItem.h"
@@ -76,7 +76,7 @@
     
     JSONString = [JSONString stringByAppendingString:@"\"trips\": ["];
     NSArray* trips = [TSTrip MR_findAll];
-    NSArray* allDocs = [TSDocument MR_findAll];
+    NSArray* allDocs = [TSDoc MR_findAll];
     NSUInteger tripCount = 0;
     for(id trip in trips){
         JSONString = [JSONString stringByAppendingString:@"{\"id\": "];
@@ -163,46 +163,37 @@
     
     JSONString = [JSONString stringByAppendingString:@"], \"documents\": ["];
     
-    NSUInteger docsCount = 0;
-    for(id doc in docObjects){
-        JSONString = [JSONString stringByAppendingString:@"{\"trip\": "];
-        JSONString = [JSONString stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long) [[docTripIds objectAtIndex:docsCount] integerValue]]];
-        JSONString = [JSONString stringByAppendingString:@","];
-        
-        JSONString = [JSONString stringByAppendingString:@"\"name\": \""];
-        JSONString = [JSONString stringByAppendingString:[doc valueForKey:@"name"]];
-        JSONString = [JSONString stringByAppendingString:@"\","];
-        
-        JSONString = [JSONString stringByAppendingString:@"\"localImagePath\": \""];
-        JSONString = [JSONString stringByAppendingString:[doc valueForKey:@"fileName"]];
-        JSONString = [JSONString stringByAppendingString:@"\"}"];
-        
-        if(allDocs.count > 0 || docsCount != (docObjects.count - 1)){
-            JSONString = [JSONString stringByAppendingString:@","];
-        }
-        docsCount++;
-    }
-    
-    docsCount = 0;
-    for(id doc in allDocs){
+    for(id allDoc in allDocs){
         bool found = false;
-        for(id otherDoc in docObjects){
-            if([[doc valueForKey:@"fileName"] isEqualToString:[otherDoc valueForKey:@"fileName"]] && [[doc valueForKey:@"name"] isEqualToString:[otherDoc valueForKey:@"name"]]){
+        for(id doc in docObjects){
+            if([[doc valueForKey:@"fileName"] isEqualToString:[allDoc valueForKey:@"fileName"]] && [[doc valueForKey:@"name"] isEqualToString:[allDoc valueForKey:@"name"]]){
                 found = true;
             }
         }
-        if(found){
-            break;
+        if(!found){
+            [docObjects addObject:allDoc];
         }
+    }
+    
+    NSUInteger docsCount = 0;
+    for(id doc in docObjects){
         JSONString = [JSONString stringByAppendingString:@"{\"name\": \""];
         JSONString = [JSONString stringByAppendingString:[doc valueForKey:@"name"]];
         JSONString = [JSONString stringByAppendingString:@"\","];
         
+        if(docsCount < docTripIds.count){
+            JSONString = [JSONString stringByAppendingString:@"\"trip\": "];
+            JSONString = [JSONString stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long) [[docTripIds objectAtIndex:docsCount] integerValue]]];
+            JSONString = [JSONString stringByAppendingString:@","];
+        } else {
+            JSONString = [JSONString stringByAppendingString:@"\"trip\": null,"];
+        }
+        
         JSONString = [JSONString stringByAppendingString:@"\"localImagePath\": \""];
         JSONString = [JSONString stringByAppendingString:[doc valueForKey:@"fileName"]];
         JSONString = [JSONString stringByAppendingString:@"\"}"];
         
-        if(docsCount != (allDocs.count - 1)){
+        if(docsCount != (docObjects.count - 1)){
             JSONString = [JSONString stringByAppendingString:@","];
         }
         docsCount++;
