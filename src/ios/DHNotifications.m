@@ -53,7 +53,7 @@ static RACSubject* saveSubject;
 }
 
 + (void)removeNotifiersByGroupId:(NSString*)groupId {
-    DLog(@"Removing notifiers with group id: %@", groupId);
+    //DLog(@"Removing notifiers with group id: %@", groupId);
     NSMutableDictionary* notifications = [DHNotifications notificationsDictionary];
     NSMutableDictionary* group = [notificationsDictionary objectForKey:groupId];
     for (NSDictionary* notifier in [group objectForKey:@"notifiers"]) {
@@ -170,7 +170,7 @@ static RACSubject* saveSubject;
 
 #ifdef DEBUG
 + (void)outputDebugInfo {
-    DLog(@"All notifications: %@", [[DHNotifications notificationsDictionary] allKeys]);
+    //DLog(@"All notifications: %@", [[DHNotifications notificationsDictionary] allKeys]);
 }
 #endif
 
